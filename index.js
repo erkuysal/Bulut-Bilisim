@@ -16,9 +16,9 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/login', (req, res) => {
+app.get('/login/:username', (req, res) => {
     res.send("Girildi.")
-    console.log("Bir kullanici girmeye calisti.")
+    console.log(`Bir ${req.params.username} girmeye calisti.`)
 })
 
 
