@@ -17,16 +17,8 @@ app.get('/', (req, res) => {
 
 
 app.get('/login', (req, res) => {
-    var username = req.query.username
-    var password = req.query.password
-
-    req.
-    // res.send('name: ' + req.query.name);
-    // res.send('password: ' + req.query.password);
-    res.send({
-        'username' : username,
-        'password' : password,
-    })
+    res.send("Girildi.")
+    console.log("Bir kullanici girmeye calisti.")
 })
 
 
