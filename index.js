@@ -1,14 +1,21 @@
 const express = require('express')
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const app = express()
 const port = 3005
+
+let corsOptions = {
+    origin : ['http://localhost:3000'],
+}
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
 
 app.use(bodyParser.json())
+app.use(cors(corsOptions))
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
