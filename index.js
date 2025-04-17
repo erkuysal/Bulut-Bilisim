@@ -14,13 +14,40 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.get('/login/:p_username/:p_password', (req, res) => {
+    const { p_username, p_password } = req.params;
+
+    const username = 'admin';
+    const password = 'password';
+
+    if (p_username === username && p_password === password) {
+        console.log(`${p_username} basariyla giris yapti`);
+        return res.status(200).send('Login successful');
+    }
+
+    console.log(`${p_username} ${p_password} izinsiz giris yapmayi denedi`);
+    return res.status(401).send('Unauthorized');
+});
 
 
-app.get('/login/:username', (req, res) => {
-    res.send("Girildi.")
-    console.log(`Bir ${req.params.username} girmeye calisti.`)
-})
+/**
+ * POST /login
+ * JSON body parameters instead of query string
+ */
+app.post('/login', (req, res) => {
+    const { p_username, p_password } = req.body;
 
+    const username = 'admin';
+    const password = 'password';
+
+    if (p_username === username && p_password === password) {
+        console.log(`${p_username} basariyla giris yapti`);
+        return res.status(200).send('Login successful');
+    }
+
+    console.log(`${p_username} ${p_password} izinsiz giris yapmayi denedi`);
+    return res.status(401).send('Unauthorized');
+});
 
 app.get('/image/:width/:height', async (req, res) => {
     var cevap = await fotoyap(req.params.width, req.params.height);
