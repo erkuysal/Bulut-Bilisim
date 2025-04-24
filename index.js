@@ -3,7 +3,7 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const app = express()
-const port = 3005
+const port = 80;
 
 let corsOptions = {
     origin : ['http://localhost:3000'],
