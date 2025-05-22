@@ -3,7 +3,9 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const app = express()
-const port = 80;
+const port = 3001;
+
+const s3BucketAddress = "https://kovva1.s3.eu-central-1.amazonaws.com/"
 
 let corsOptions = {
     origin : ['http://localhost:3000'],
@@ -81,6 +83,13 @@ app.post('/image/:width/:height', async (req, res) => {
 });
 
 
+app.get('/item/:key', async (req, res) => {
+    var address = s3BucketAddress + req.params.key
+    var item = await axios.get(address, {responseType: "stream"})
+    res.setHeader("content-type", "image/png")
+    item.data.pipe(res)
+});
+
 
 async function fotoyap(width,height){
     const imageUrl = `https://placehold.co/${width}x${height}`;
@@ -97,6 +106,8 @@ async function fotoyap(width,height){
         console.error('Error fetching the image:', error);
     }
 }
+
+
 
 
 
